@@ -1,9 +1,9 @@
-import 'package:challenges_taski/core/services/service_connectivity.dart';
-import 'package:challenges_taski/core/util.dart';
-import 'package:challenges_taski/models/task.dart';
-import 'package:challenges_taski/repositories/task_repository.dart';
-import 'package:challenges_taski/data/local/task_local_data_source.dart';
-import 'package:challenges_taski/data/remote/task_remote_data_source.dart';
+import '../core/services/service_connectivity.dart';
+import '../core/util.dart';
+import '../models/task.dart';
+import 'task_repository.dart';
+import '../data/local/task_local_data_source.dart';
+import '../data/remote/task_remote_data_source.dart';
 
 class TaskRepositoryImpl implements TaskRepository {
   final TaskLocalDataSource localDataSource;

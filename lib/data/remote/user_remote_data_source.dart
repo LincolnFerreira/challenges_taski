@@ -1,6 +1,5 @@
-import 'package:challenges_taski/models/user.dart';
+import '../../models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:uuid/uuid.dart';
 
 class UserRemoteDataSource {
   final FirebaseFirestore firestore;

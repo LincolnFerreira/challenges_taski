@@ -1,4 +1,4 @@
-import 'package:challenges_taski/models/user.dart';
+import '../../models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserLocalDataSource {

@@ -1,4 +1,4 @@
-import 'package:challenges_taski/models/task.dart';
+import '../../models/task.dart';
 import 'package:flutter/material.dart';
 import 'task_item.dart';
 

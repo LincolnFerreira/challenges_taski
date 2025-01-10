@@ -1,4 +1,4 @@
-import 'package:challenges_taski/core/theme/custom_color.dart';
+import '../../core/theme/custom_color.dart';
 import 'package:flutter/material.dart';
 
 class CustomCheckbox extends StatefulWidget {

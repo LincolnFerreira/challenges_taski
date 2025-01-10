@@ -24,10 +24,6 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
-      child: Text(
-        text,
-        style: TextStyle(fontSize: fontSize, color: textColor),
-      ),
       style: ElevatedButton.styleFrom(
         backgroundColor: backgroundColor,
         elevation: 0,
@@ -35,6 +31,10 @@ class CustomButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: borderRadius,
         ),
+      ),
+      child: Text(
+        text,
+        style: TextStyle(fontSize: fontSize, color: textColor),
       ),
     );
   }

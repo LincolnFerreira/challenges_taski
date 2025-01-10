@@ -1,4 +1,4 @@
-import 'package:challenges_taski/views/widgets/custom_checkbox.dart';
+import 'custom_checkbox.dart';
 import 'package:flutter/material.dart';
 
 class Logo extends StatelessWidget {

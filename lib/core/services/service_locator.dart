@@ -1,15 +1,15 @@
-import 'package:challenges_taski/core/services/service_connectivity.dart';
-import 'package:challenges_taski/core/services/service_sync.dart';
-import 'package:challenges_taski/data/local/user_local_data_source.dart';
-import 'package:challenges_taski/data/remote/user_remote_data_source.dart';
-import 'package:challenges_taski/repositories/user_repository_impl.dart';
-import 'package:challenges_taski/view_models/todo_view_model.dart';
-import 'package:challenges_taski/view_models/user_view_model.dart';
+import 'service_connectivity.dart';
+import 'service_sync.dart';
+import '../../data/local/user_local_data_source.dart';
+import '../../data/remote/user_remote_data_source.dart';
+import '../../repositories/user_repository_impl.dart';
+import '../../view_models/todo_view_model.dart';
+import '../../view_models/user_view_model.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:challenges_taski/repositories/task_repository_impl.dart';
-import 'package:challenges_taski/data/local/task_local_data_source.dart';
-import 'package:challenges_taski/data/remote/task_remote_data_source.dart';
+import '../../repositories/task_repository_impl.dart';
+import '../../data/local/task_local_data_source.dart';
+import '../../data/remote/task_remote_data_source.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ServiceLocator {

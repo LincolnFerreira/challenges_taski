@@ -1,9 +1,9 @@
-import 'package:challenges_taski/view_models/todo_view_model.dart';
-import 'package:challenges_taski/views/home/pages/done_view.dart';
-import 'package:challenges_taski/views/home/pages/search_view.dart';
-import 'package:challenges_taski/views/widgets/custom_bottom_sheet.dart';
-import 'package:challenges_taski/views/widgets/custom_app_bar.dart';
-import 'package:challenges_taski/views/home/pages/todo_view.dart';
+import '../../view_models/todo_view_model.dart';
+import 'pages/done_view.dart';
+import 'pages/search_view.dart';
+import '../widgets/custom_bottom_sheet.dart';
+import '../widgets/custom_app_bar.dart';
+import 'pages/todo_view.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatefulWidget {

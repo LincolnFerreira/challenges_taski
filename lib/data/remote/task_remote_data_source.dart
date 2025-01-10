@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:challenges_taski/models/task.dart';
+import '../../models/task.dart';
 
 class TaskRemoteDataSource {
   final FirebaseFirestore firestore;

@@ -1,9 +1,9 @@
-import 'package:challenges_taski/core/theme/custom_color.dart';
-import 'package:challenges_taski/models/task.dart';
-import 'package:challenges_taski/view_models/todo_view_model.dart';
-import 'package:challenges_taski/views/widgets/custom_button_icon_label.dart';
-import 'package:challenges_taski/views/widgets/custom_circular_progress.dart';
-import 'package:challenges_taski/views/widgets/task_list.dart';
+import '../../../core/theme/custom_color.dart';
+import '../../../models/task.dart';
+import '../../../view_models/todo_view_model.dart';
+import '../../widgets/custom_button_icon_label.dart';
+import '../../widgets/custom_circular_progress.dart';
+import '../../widgets/task_list.dart';
 import 'package:flutter/material.dart';
 
 class TodoView extends StatefulWidget {

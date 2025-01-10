@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:challenges_taski/models/task.dart';
-import 'package:challenges_taski/repositories/task_repository_impl.dart';
+import '../../models/task.dart';
+import '../../repositories/task_repository_impl.dart';
 
 class SyncService {
   final TaskRepositoryImpl taskRepository;

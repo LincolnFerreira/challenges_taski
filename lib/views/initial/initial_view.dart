@@ -1,8 +1,8 @@
-import 'package:challenges_taski/core/services/service_locator.dart';
-import 'package:challenges_taski/models/user.dart';
-import 'package:challenges_taski/views/home/home_view.dart';
-import 'package:challenges_taski/views/widgets/custom_button.dart';
-import 'package:challenges_taski/views/widgets/logo.dart';
+import '../../core/services/service_locator.dart';
+import '../../models/user.dart';
+import '../home/home_view.dart';
+import '../widgets/custom_button.dart';
+import '../widgets/logo.dart';
 import 'package:flutter/material.dart';
 
 class InitialView extends StatefulWidget {

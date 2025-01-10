@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-import 'package:challenges_taski/core/services/service_locator.dart';
-import 'package:challenges_taski/core/theme/custom_color.dart';
-import 'package:challenges_taski/views/initial/initial_view.dart';
+import 'core/services/service_locator.dart';
+import 'core/theme/custom_color.dart';
+import 'views/initial/initial_view.dart';
 
 import 'firebase_options.dart';
 

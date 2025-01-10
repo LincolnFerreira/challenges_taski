@@ -1,7 +1,7 @@
-import 'package:challenges_taski/core/services/service_connectivity.dart';
+import '../core/services/service_connectivity.dart';
 import 'package:flutter/material.dart';
-import 'package:challenges_taski/repositories/task_repository_impl.dart';
-import 'package:challenges_taski/models/task.dart';
+import '../repositories/task_repository_impl.dart';
+import '../models/task.dart';
 
 class TodoViewModel extends ChangeNotifier {
   final TaskRepositoryImpl taskRepository;

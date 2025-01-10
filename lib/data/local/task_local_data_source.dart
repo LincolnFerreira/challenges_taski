@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:challenges_taski/models/task.dart';
+import '../../models/task.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TaskLocalDataSource {

@@ -1,4 +1,4 @@
-import 'package:challenges_taski/models/user.dart';
+import '../models/user.dart';
 
 import '../data/local/user_local_data_source.dart';
 import '../data/remote/user_remote_data_source.dart';

@@ -116,7 +116,7 @@ void main() {
           .called(1);
 
       verify(() => mockLocalDataSource.updateTask(
-          capturedTaskForAdd.idLocal, capturedTaskForUpdate)).called(1);
+          capturedTaskForAdd.id, capturedTaskForUpdate)).called(1);
 
       expect(capturedTaskForAdd.isSynced, false);
       expect(capturedTaskForUpdate.isSynced, true);
@@ -133,7 +133,7 @@ void main() {
       final result =
           await taskRepository.createTask('New Task', 'Description', 'user1');
 
-      expect(result.idLocal, isNotEmpty);
+      expect(result.id, isNotEmpty);
       expect(result.isSynced, false);
       expect(result.isModified, true);
 

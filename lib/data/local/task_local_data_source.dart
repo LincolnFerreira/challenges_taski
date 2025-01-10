@@ -40,6 +40,7 @@ class TaskLocalDataSource {
         .map((taskJson) => Task.fromMap(jsonDecode(taskJson)))
         .toList();
 
+    tasks = tasks.where((task) => !task.isCompleted).toList();
     return tasks;
   }
 
@@ -72,12 +73,9 @@ class TaskLocalDataSource {
     Task? taskToUpdate;
     int? taskIndex;
 
-    bool isRemoteTask = updatedTask.idLocal == null;
-
     for (int i = 0; i < currentTasks.length; i++) {
       Task task = currentTasks[i];
-      if ((isRemoteTask && task.id == updatedTask.id) ||
-          (!isRemoteTask && task.idLocal == idLocal)) {
+      if (task.id == idLocal) {
         taskToUpdate = task;
         taskIndex = i;
         break;
@@ -86,9 +84,8 @@ class TaskLocalDataSource {
 
     if (updatedTask.isCompleted) {
       await addDoneTask(updatedTask);
-      isRemoteTask
-          ? await deleteOneTask(updatedTask.id!, true)
-          : await deleteOneTaskByLocalId(updatedTask.idLocal!, true);
+
+      await deleteOneTask(updatedTask.id!, true);
       return updatedTask;
     }
 
@@ -124,24 +121,6 @@ class TaskLocalDataSource {
   }
 
   Future<void> deleteOneTask(String taskId, bool isLocalRemoveOnly) async {
-    List<Task> currentTasks = await getCachedDoneTasks();
-
-    List<Task> updatedTasks = currentTasks.map((task) {
-      if (task.id == taskId) {
-        return task.copyWith(
-          isDeleted: !isLocalRemoveOnly ? true : false,
-          isSynced: false,
-          isModified: true,
-        );
-      }
-      return task;
-    }).toList();
-
-    await cacheDoneTasks(updatedTasks);
-  }
-
-  Future<void> deleteOneTaskByLocalId(
-      String taskId, bool isLocalRemoveOnly) async {
     List<Task> currentTasks = await getCachedDoneTasks();
 
     List<Task> updatedTasks = currentTasks.map((task) {

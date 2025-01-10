@@ -1,6 +1,7 @@
 import 'package:challenges_taski/core/services/service_locator.dart';
 import 'package:challenges_taski/models/user.dart';
 import 'package:challenges_taski/views/home/home_view.dart';
+import 'package:challenges_taski/views/widgets/custom_button.dart';
 import 'package:challenges_taski/views/widgets/logo.dart';
 import 'package:flutter/material.dart';
 
@@ -42,7 +43,7 @@ class _InitialViewState extends State<InitialView> {
         builder: (context) => HomeView(
           userName: user!.name,
           profileImageUrl: '',
-          userId: user!.uuid,
+          userId: user?.uuid ?? '',
           todoViewModel: ServiceLocator().todoViewModel,
           onTapCreateTask: ServiceLocator().todoViewModel.createTask,
         ),
@@ -93,19 +94,52 @@ class _InitialViewState extends State<InitialView> {
               ),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
+            CustomButton(
               onPressed: () async {
-                final name = nameController.text;
-                final email = emailController.text;
-                if (name.isNotEmpty) {
-                  await ServiceLocator().userViewModel.createUser(email, name);
+                final name = nameController.text.trim();
+                final email = emailController.text.trim();
+
+                if (name.isEmpty || email.isEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Usuário salvo com sucesso')),
+                    const SnackBar(
+                      content: Text('Por favor, preencha todos os campos.'),
+                    ),
                   );
-                  _navigateToMainScreen();
+                  return;
+                }
+
+                try {
+                  final success = await ServiceLocator()
+                      .userViewModel
+                      .createUser(email, name);
+
+                  if (success) {
+                    setState(() {
+                      user = ServiceLocator().userViewModel.user;
+                    });
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Usuário salvo com sucesso!'),
+                      ),
+                    );
+
+                    // Adicionando um delay de 2 segundos antes de navegar
+                    await Future.delayed(const Duration(seconds: 2));
+                    _navigateToMainScreen();
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Não foi possível salvar o usuário.'),
+                      ),
+                    );
+                  }
+                } catch (e) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Erro: ${e.toString()}')),
+                  );
                 }
               },
-              child: const Text('Entrar'),
+              text: 'Entrar',
             ),
           ],
         ),

@@ -92,6 +92,7 @@ class _TodoViewState extends State<TodoView> {
                       ? Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
+                            spacing: 20,
                             children: [
                               Image.asset(
                                 'assets/images/clipboard.png',
@@ -99,6 +100,7 @@ class _TodoViewState extends State<TodoView> {
                                 height: 80,
                               ),
                               Text('You have no tasks listed.'),
+                              SizedBox(height: 10),
                               CustomButtonIconLabel(
                                 text: 'Create task',
                                 fontSize: 20,

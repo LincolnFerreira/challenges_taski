@@ -9,7 +9,7 @@ class UserLocalDataSource {
   Future<void> cacheUser(User user) async {
     await sharedPreferences.setString('email', user.email);
     await sharedPreferences.setString('name', user.name);
-    await sharedPreferences.setString('uuid', user.uuid);
+    await sharedPreferences.setString('uuid', user.uuid ?? '');
   }
 
   Future<User?> getCachedUser() async {

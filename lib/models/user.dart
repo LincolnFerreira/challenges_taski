@@ -1,7 +1,7 @@
 class User {
   final String email;
   final String name;
-  final String uuid;
+  final String? uuid;
 
   User({required this.email, required this.name, required this.uuid});
 

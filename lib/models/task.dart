@@ -1,5 +1,4 @@
 class Task {
-  String? idLocal;
   String? id;
   String title;
   String description;
@@ -10,7 +9,6 @@ class Task {
   bool isDeleted;
 
   Task({
-    this.idLocal,
     this.id,
     required this.title,
     required this.description,
@@ -32,7 +30,6 @@ class Task {
 
   Map<String, dynamic> toFullMap() {
     return {
-      'idLocal': idLocal,
       'id': id,
       'title': title,
       'description': description,
@@ -46,7 +43,6 @@ class Task {
 
   factory Task.fromMap(Map<String, dynamic> map) {
     return Task(
-      idLocal: map['idLocal'],
       id: map['id'],
       title: map['title'],
       description: map['description'],
@@ -70,7 +66,6 @@ class Task {
     bool? isDeleted,
   }) {
     return Task(
-      idLocal: idLocal ?? this.idLocal,
       id: id ?? this.id,
       title: title ?? this.title,
       description: description ?? this.description,

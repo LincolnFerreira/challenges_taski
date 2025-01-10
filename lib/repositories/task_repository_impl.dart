@@ -1,4 +1,5 @@
 import 'package:challenges_taski/core/services/service_connectivity.dart';
+import 'package:challenges_taski/core/util.dart';
 import 'package:challenges_taski/models/task.dart';
 import 'package:challenges_taski/repositories/task_repository.dart';
 import 'package:challenges_taski/data/local/task_local_data_source.dart';
@@ -32,10 +33,10 @@ class TaskRepositoryImpl implements TaskRepository {
 
   Future<Task> createTask(
       String taskName, String taskDescription, String userId) async {
-    String localId = DateTime.now().millisecondsSinceEpoch.toString();
+    String generatedTaskId = Util.generateUniqueId();
 
     Task newTask = Task(
-        idLocal: localId,
+        id: generatedTaskId,
         userId: userId,
         title: taskName,
         description: taskDescription,
@@ -48,7 +49,7 @@ class TaskRepositoryImpl implements TaskRepository {
       final postNewTask = await remoteDataSource.createTask(newTask);
       newTask =
           newTask.copyWith(id: postNewTask, isSynced: true, isModified: false);
-      await localDataSource.updateTask(localId, newTask);
+      await localDataSource.updateTask(generatedTaskId, newTask);
     }
 
     return newTask;
@@ -70,20 +71,20 @@ class TaskRepositoryImpl implements TaskRepository {
   }
 
   Future<Task> updateTask(String userId, Task task) async {
-    await localDataSource.updateTask(task.idLocal, task);
+    await localDataSource.updateTask(task.id, task);
 
     final updatedTask = await remoteDataSource.updateTask(task);
-    localDataSource.updateTask(task.idLocal, updatedTask ?? task);
+    localDataSource.updateTask(task.id, updatedTask ?? task);
 
     return updatedTask ?? task;
   }
 
-  Future<void> deleteTask(String localId) async {
+  Future<void> deleteTask(String taskID) async {
     try {
-      await localDataSource.deleteOneTask(localId, false);
+      await localDataSource.deleteOneTask(taskID, false);
 
       if (await connectivityService.isConnected()) {
-        await remoteDataSource.deleteTask(localId);
+        await remoteDataSource.deleteTask(taskID);
       }
     } catch (e) {
       print('Erro ao deletar a tarefa: $e');
@@ -114,7 +115,7 @@ class TaskRepositoryImpl implements TaskRepository {
       if (await connectivityService.isConnected()) {
         final syncedTask = await remoteDataSource.updateTask(task);
 
-        await localDataSource.updateTask(task.idLocal, syncedTask ?? task);
+        await localDataSource.updateTask(task.id, syncedTask ?? task);
       }
     } catch (e) {
       print('Erro na sincronização da tarefa: $e');

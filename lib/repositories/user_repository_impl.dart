@@ -12,8 +12,11 @@ class UserRepositoryImpl {
     required this.remoteDataSource,
   });
 
-  Future<User> createUser({required String name, required String email}) async {
-    return await remoteDataSource.createUser(name, email);
+  Future<User> createUser({required User user}) async {
+    await remoteDataSource.createUser(user);
+    await localDataSource.cacheUser(user);
+
+    return user;
   }
 
   Future<User?> getUserName() async => await localDataSource.getCachedUser();

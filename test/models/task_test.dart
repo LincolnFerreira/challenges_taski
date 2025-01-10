@@ -9,7 +9,7 @@ void main() {
         description: 'This is a test task',
       );
 
-      expect(task.idLocal, isNull);
+      expect(task.id, isNull);
       expect(task.id, isNull);
       expect(task.title, 'Test Task');
       expect(task.description, 'This is a test task');
@@ -39,7 +39,6 @@ void main() {
 
     test('should convert to full map correctly', () {
       final task = Task(
-        idLocal: 'local123',
         id: 'remote123',
         title: 'Test Task',
         description: 'This is a test task',
@@ -52,7 +51,6 @@ void main() {
 
       final map = task.toFullMap();
       expect(map, {
-        'idLocal': 'local123',
         'id': 'remote123',
         'title': 'Test Task',
         'description': 'This is a test task',
@@ -66,7 +64,6 @@ void main() {
 
     test('should create Task from map correctly', () {
       final map = {
-        'idLocal': 'local123',
         'id': 'remote123',
         'title': 'Test Task',
         'description': 'This is a test task',
@@ -79,7 +76,7 @@ void main() {
 
       final task = Task.fromMap(map);
 
-      expect(task.idLocal, 'local123');
+      expect(task.id, 'local123');
       expect(task.id, 'remote123');
       expect(task.title, 'Test Task');
       expect(task.description, 'This is a test task');
@@ -92,7 +89,6 @@ void main() {
 
     test('should copy Task with updated fields correctly', () {
       final task = Task(
-        idLocal: 'local123',
         id: 'remote123',
         title: 'Test Task',
         description: 'This is a test task',
@@ -109,7 +105,7 @@ void main() {
         isDeleted: true,
       );
 
-      expect(updatedTask.idLocal, 'local123');
+      expect(updatedTask.id, 'local123');
       expect(updatedTask.id, 'remote123');
       expect(updatedTask.title, 'Updated Task');
       expect(updatedTask.description, 'This is a test task');

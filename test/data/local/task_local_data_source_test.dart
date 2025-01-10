@@ -21,7 +21,6 @@ void main() {
     const doneTasksKey = 'done_tasks';
 
     final task = Task(
-      idLocal: '123',
       title: 'Test Task',
       description: 'Description',
       isCompleted: false,
@@ -89,7 +88,7 @@ void main() {
       when(() => mockSharedPreferences.setStringList(
           tasksKey, updatedTaskJsonList)).thenAnswer((_) async => true);
 
-      await dataSource.updateTask(task.idLocal, updatedTask);
+      await dataSource.updateTask(task.id, updatedTask);
 
       verify(() => mockSharedPreferences.setStringList(
           tasksKey, updatedTaskJsonList)).called(1);

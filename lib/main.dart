@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:challenges_taski/core/services/service_locator.dart';
 import 'package:challenges_taski/core/theme/custom_color.dart';
-import 'package:challenges_taski/views/login/login_view.dart';
+import 'package:challenges_taski/views/initial/initial_view.dart';
 
 import 'firebase_options.dart';
 

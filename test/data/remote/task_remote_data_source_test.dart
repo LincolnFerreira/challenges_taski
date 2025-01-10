@@ -72,7 +72,7 @@ void main() {
 
     // Assert
     final doc =
-        await fakeFirestore.collection('tasks').doc(updatedTask.id).get();
+        await fakeFirestore.collection('tasks').doc(updatedTask?.id).get();
     expect(doc.data()!['title'], 'Updated Task');
     expect(doc.data()!['isCompleted'], true);
   });

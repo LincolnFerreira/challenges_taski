@@ -7,7 +7,7 @@ class Task {
   String? userId;
   bool isModified;
   bool isSynced;
-  bool isDeleted; // New property to track if the task was deleted
+  bool isDeleted;
 
   Task({
     this.idLocal,
@@ -18,7 +18,7 @@ class Task {
     this.userId,
     this.isModified = false,
     this.isSynced = false,
-    this.isDeleted = false, // Initialize the new property
+    this.isDeleted = false,
   });
 
   Map<String, dynamic> toMap() {
@@ -40,11 +40,11 @@ class Task {
       'userId': userId,
       'isModified': isModified,
       'isSynced': isSynced,
-      'isDeleted': isDeleted, // Include the new property
+      'isDeleted': isDeleted,
     };
   }
 
-  factory Task.fromMap(Map<String, dynamic> map, {bool isSynced = true}) {
+  factory Task.fromMap(Map<String, dynamic> map) {
     return Task(
       idLocal: map['idLocal'],
       id: map['id'],
@@ -53,8 +53,8 @@ class Task {
       isCompleted: map['isCompleted'],
       userId: map['userId'],
       isModified: map['isModified'] ?? false,
-      isSynced: map['isSynced'] ?? isSynced,
-      isDeleted: map['isDeleted'] ?? false, // Initialize the new property
+      isSynced: map['isSynced'],
+      isDeleted: map['isDeleted'] ?? false,
     );
   }
 
@@ -67,7 +67,7 @@ class Task {
     String? userId,
     bool? isModified,
     bool? isSynced,
-    bool? isDeleted, // Add the new property to copyWith
+    bool? isDeleted,
   }) {
     return Task(
       idLocal: idLocal ?? this.idLocal,
@@ -78,7 +78,7 @@ class Task {
       userId: userId ?? this.userId,
       isModified: isModified ?? this.isModified,
       isSynced: isSynced ?? this.isSynced,
-      isDeleted: isDeleted ?? this.isDeleted, // Copy the new property
+      isDeleted: isDeleted ?? this.isDeleted,
     );
   }
 }

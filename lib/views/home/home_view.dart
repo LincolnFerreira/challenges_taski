@@ -37,6 +37,7 @@ class _HomeViewState extends State<HomeView> {
       content: SizedBox.shrink(),
       onTapCreateTask: (title, description) {
         widget.onTapCreateTask(title, description, widget.userId);
+        widget.todoViewModel.fetchTodoList(widget.userId);
         Navigator.pop(context);
       },
     );

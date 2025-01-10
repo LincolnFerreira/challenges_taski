@@ -66,7 +66,7 @@ class TaskLocalDataSource {
     await cacheTasks(currentTasks);
   }
 
-  Future<void> updateTask(String? idLocal, Task updatedTask) async {
+  Future<Task> updateTask(String? idLocal, Task updatedTask) async {
     List<Task> currentTasks = await getCachedTasks();
 
     Task? taskToUpdate;
@@ -84,6 +84,14 @@ class TaskLocalDataSource {
       }
     }
 
+    if (updatedTask.isCompleted) {
+      await addDoneTask(updatedTask);
+      isRemoteTask
+          ? await deleteOneTask(updatedTask.id!, true)
+          : await deleteOneTaskByLocalId(updatedTask.idLocal!, true);
+      return updatedTask;
+    }
+
     if (taskToUpdate != null && taskIndex != null) {
       currentTasks[taskIndex] = updatedTask;
 
@@ -91,6 +99,7 @@ class TaskLocalDataSource {
     } else {
       print('Erro: Tarefa não encontrada para atualização.');
     }
+    return updatedTask;
   }
 
   Future<void> addDoneTask(Task task) async {
@@ -114,13 +123,31 @@ class TaskLocalDataSource {
     await cacheDoneTasks(updatedTasks);
   }
 
-  Future<void> deleteOneTask(String taskId) async {
+  Future<void> deleteOneTask(String taskId, bool isLocalRemoveOnly) async {
     List<Task> currentTasks = await getCachedDoneTasks();
 
     List<Task> updatedTasks = currentTasks.map((task) {
       if (task.id == taskId) {
         return task.copyWith(
-          isDeleted: true,
+          isDeleted: !isLocalRemoveOnly ? true : false,
+          isSynced: false,
+          isModified: true,
+        );
+      }
+      return task;
+    }).toList();
+
+    await cacheDoneTasks(updatedTasks);
+  }
+
+  Future<void> deleteOneTaskByLocalId(
+      String taskId, bool isLocalRemoveOnly) async {
+    List<Task> currentTasks = await getCachedDoneTasks();
+
+    List<Task> updatedTasks = currentTasks.map((task) {
+      if (task.id == taskId) {
+        return task.copyWith(
+          isDeleted: !isLocalRemoveOnly ? true : false,
           isSynced: false,
           isModified: true,
         );

@@ -73,14 +73,14 @@ class TaskRepositoryImpl implements TaskRepository {
     await localDataSource.updateTask(task.idLocal, task);
 
     final updatedTask = await remoteDataSource.updateTask(task);
-    await localDataSource.updateTask(task.idLocal, updatedTask);
+    localDataSource.updateTask(task.idLocal, updatedTask ?? task);
 
-    return updatedTask;
+    return updatedTask ?? task;
   }
 
   Future<void> deleteTask(String localId) async {
     try {
-      await localDataSource.deleteOneTask(localId);
+      await localDataSource.deleteOneTask(localId, false);
 
       if (await connectivityService.isConnected()) {
         await remoteDataSource.deleteTask(localId);
@@ -114,7 +114,7 @@ class TaskRepositoryImpl implements TaskRepository {
       if (await connectivityService.isConnected()) {
         final syncedTask = await remoteDataSource.updateTask(task);
 
-        await localDataSource.updateTask(task.idLocal, syncedTask);
+        await localDataSource.updateTask(task.idLocal, syncedTask ?? task);
       }
     } catch (e) {
       print('Erro na sincronização da tarefa: $e');

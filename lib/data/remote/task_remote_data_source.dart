@@ -31,17 +31,13 @@ class TaskRemoteDataSource {
     }
   }
 
-  Future<Task> updateTask(Task taskToUpdate) async {
-    try {
-      await firestore
-          .collection('tasks')
-          .doc(taskToUpdate.id)
-          .update(taskToUpdate.toMap());
+  Future<Task?> updateTask(Task taskToUpdate) async {
+    await firestore
+        .collection('tasks')
+        .doc(taskToUpdate.id)
+        .update(taskToUpdate.toMap());
 
-      return taskToUpdate;
-    } catch (e) {
-      throw Exception('Erro ao atualizar a tarefa: $e');
-    }
+    return taskToUpdate;
   }
 
   Future<void> deleteTask(String taskId) async {

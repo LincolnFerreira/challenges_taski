@@ -135,7 +135,7 @@ void main() {
       when(() => mockSharedPreferences.setStringList(
           doneTasksKey, deletedTaskJsonList)).thenAnswer((_) async => true);
 
-      await dataSource.deleteOneTask(task.id!);
+      await dataSource.deleteOneTask(task.id!, false);
 
       verify(() => mockSharedPreferences.setStringList(
           doneTasksKey, deletedTaskJsonList)).called(1);

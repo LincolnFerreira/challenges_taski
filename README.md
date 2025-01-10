@@ -79,7 +79,7 @@ lib/
 #### Passos para rodar o projeto
 1. Clone o repositório:
    ```bash
-   git clone [URL_DO_SEU_REPOSITORIO]
+   git clone https://github.com/LincolnFerreira/challenges_taski.git
    cd [challenges_taski]
    ```
 2. Instale as dependências:
